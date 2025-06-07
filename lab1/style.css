@@ -1,0 +1,205 @@
+body{
+    font-family: tahoma;
+    font-size: 28px;
+    width: 100%;
+    margin: 0px auto;
+    background-color: #f0f2f5;
+}
+@keyframes textPulse {
+  0% {
+    color: #ffcccc; /* màu nhạt */
+  }
+  50% {
+    color: #990000; /* màu đậm */
+  }
+  100% {
+    color: #ffcccc; /* quay lại nhạt */
+  }
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgb(59, 182, 193);
+    font-family: Arial, sans-serif;
+    animation: textPulse 2s infinite;
+  }
+  #logo {
+    height: 40px;
+  }
+
+  #header-title {
+    flex: 1;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+  }
+/* Cài đặt chung cho phần tử banner */
+#banner {
+  width: 100%;
+  background-color: #f0f2f5; /* Màu nền cho banner */
+  padding: 20px;
+  text-align: center; /* Căn giữa các phần tử bên trong */
+}
+
+.tag {
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.tag button {
+  width: 10%;
+  height: 50px;
+  font-size: 20px;
+  margin-left: 2%;
+  margin-right: 2%;
+  color: black;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+/* Hiệu ứng khi hover */
+.tag button:hover {
+  background-color: #45a049;
+  box-shadow: 0 12px 16px rgba(0, 0, 0, 0.24),
+              0 17px 50px rgba(0, 0, 0, 0.19);
+  transform: scale(1.05);
+}
+.tag button:active {
+  background-color: #e41212; /* màu khi nhấn */
+  transform: scale(0.97); /* hiệu ứng nhấn nhẹ */
+}
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: #f0f2f5;
+}
+
+.dashboard {
+  width: 33%;
+  padding: 50px;
+  color: white;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.red {
+  background-color: #ce2a3f7e;
+}
+
+.blue {
+  background-color: #0f8aa6;
+}
+
+.green {
+  background-color: #e18848; /* màu xanh lá */
+}
+canvas {
+  width: 100% !important;  /* Giữ cho canvas luôn chiếm full chiều rộng */
+  height: 150px !important;  /* Đặt chiều cao cố định */
+  color: black;
+}
+#time {
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center;     /* Căn giữa theo chiều dọc */
+  font-family: Tahoma;
+  color: black;
+  font-size: 30px;         /* Kích thước chữ lớn hơn để dễ nhìn */
+}
+#bot h1 {
+  width: 200px;
+  height: 225px;
+  display: inline-block;
+  border-style: inset;
+  margin-left: 15%;
+  background-color: white; 
+}
+#bot h1 h2
+{
+  width:100%;
+  height:10%;
+  background-color: beige; 
+}
+button 
+{
+  width: 60px;
+  height: 30px;
+  margin-left: 10%;
+  font-size: 20px;
+  font-family: revert;
+  margin-right: auto;
+
+}
+#bot p {
+  float: left;
+  margin-left: 40%;
+  margin-top: -13%;
+  font-size: 20px;
+  font-family: tahoma;
+  color: black;
+}
+
+/* Cài đặt cho phần tử chứa tất cả các phần tử nhiệt độ */
+.temperature-container {
+  display: flex; /* Sử dụng flexbox để căn chỉnh các phần tử trên một hàng */
+  align-items: center; /* Căn chỉnh các phần tử theo chiều dọc */
+  margin-top: 30px; /* Khoảng cách giữa .temperature-container và phần tử phía trên */
+}
+
+/* Cài đặt cho hình ảnh */
+.icon-img {
+  width: 30px; /* Điều chỉnh kích thước hình ảnh */
+  height: 30px;
+  margin-right: 10px;
+  margin-left: 20px /* Khoảng cách giữa hình ảnh và nhãn */
+}
+
+/* Cài đặt cho nhãn */
+label {
+  font-size: 18px; /* Kích thước chữ */
+  margin-right: 20px; /* Khoảng cách giữa nhãn và h1 */
+}
+
+/* Cài đặt cho h1 */
+#nhietdo {
+  font-size: 20px; /* Kích thước chữ cho h1 */
+  margin: 0; /* Loại bỏ khoảng cách mặc định của h1 */
+}
+#doam {
+  font-size: 20px; /* Kích thước chữ cho h1 */
+  margin: 0; /* Loại bỏ khoảng cách mặc định của h1 */
+}
+#khigas {
+  font-size: 20px; /* Kích thước chữ cho h1 */
+  margin: 0; /* Loại bỏ khoảng cách mặc định của h1 */
+}
+#led {
+  margin-top: 10px;
+  width: 100px;
+  height: 100px;
+}
+#loa {
+  margin-top: 10px;
+  width: 100px;
+  height: 100px;
+}
+#fan {
+  margin-top: 10px;
+  width: 100px;
+  height: 100px;
+}
+#footer{
+  background: rgb(140, 194, 14);
+  color: black;
+  min-height: 45px;
+  width: 100%;
+}

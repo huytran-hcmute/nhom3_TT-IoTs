@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart House</title>
+    <link rel="icon" href="house.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<body>
+  <div id= "header">
+    <img src="house.png" id="logo" alt="Smart House Logo">
+    <div id="header-title">Smart House</div>
+  </div>
+  <div id= "banner">
+    <div class="tag">
+      <button class="button2" onclick="function_q1()"><b>P.Khách</b></button>
+      <button class="button2" onclick="function_q2()"><b>P.Ngủ 1</b></button>
+      <button class="button2" onclick="function_q3()"><b>P.Ngủ 2</b></button>
+      <button class="button2" onclick="function_q4()"><b>Bếp</b></button>
+    </div>    
+  </div>
+<div id= "main"> 
+  <div id="top">
+    <div id="time"></div>
+<script>
+  function dongho() {
+    var time = new Date();
+  
+    // Lấy giờ, phút, giây
+    var gio = time.getHours();
+    var phut = time.getMinutes();
+    var giay = time.getSeconds();
+    
+    // Lấy ngày, tháng, năm
+    var ngay = time.getDate();
+    var thang = time.getMonth() + 1; // Tháng bắt đầu từ 0 (Jan = 0)
+    var nam = time.getFullYear();
+    
+    // Đảm bảo 2 chữ số cho giờ, phút, giây
+    if (gio < 10) gio = "0" + gio;
+    if (phut < 10) phut = "0" + phut;
+    if (giay < 10) giay = "0" + giay;
+    
+    // Đảm bảo 2 chữ số cho ngày và tháng
+    if (ngay < 10) ngay = "0" + ngay;
+    if (thang < 10) thang = "0" + thang;
+    
+    // Cập nhật nội dung trong div#time
+    document.getElementById("time").innerHTML = ngay + "/" + thang + "/" + nam + " " + gio + ":" + phut + ":" + giay;
+    
+    setTimeout("dongho()", 1000); // Gọi lại hàm sau mỗi 1 giây
+  };
+  dongho();
+</script>
+
+  </script>
+<div class="container">
+  <div class="dashboard red">
+    <canvas id="chartNhietDo"></canvas>
+    <div class="temperature-container">
+      <img src="sybol/nhietdo.png" class="icon-img">
+      <label for="text">Nhiệt độ</label>
+      <h1 id="nhietdo"></h1>
+    </div>
+  </div>
+  <div class="dashboard blue">
+    <canvas id="chartDoam"></canvas>
+    <div class="temperature-container">
+      <img src="sybol/doam.png" class="icon-img">
+      <label for="text">Độ ẩm</label>
+      <h1 id="doam"></h1>
+    </div>
+  </div>
+  <div class="dashboard green">
+    <canvas id="chartGas"></canvas>
+    <div class="temperature-container">
+      <img src="sybol/flame.png" class="icon-img">
+      <label for="text">Nồng độ khí Gas</label>
+      <h1 id="khigas"></h1>
+    </div>
+  </div>
+  </div>
+  <div id="bot">
+    <h1><center><img src="fan.png" id="fan"></center>
+      <button type="button" id="btn1">On</button>
+      <button type="button" id="btn2">Off</button><br><br>
+      <p>QUẠT</p>
+    </h1>
+    <h1><center><img src="den.png" id="led"></center>
+      <button type="button" id="btn3">On</button>
+      <button type="button" id="btn4">Off</button><br><br>
+      <p>Đèn</p>
+  </h1>
+  <h1><center><img src="loa.png" id="loa"></center>
+      <button type="button" id="btn5">On</button>
+      <button type="button" id="btn6">Off</button><br><br>
+      <p>Loa</p>
+  </h1>  
+  </div>
+</div>
+<div id= "footer">
+  <ul>
+       <p>    MADE BY NHÓM 3</p>
+       <p>    NGUYỄN THÁI DƯƠNG </p>
+       <p>    TRẦN NGUYỄN GIA HUY</p>
+       <p>    PHẠM QUỐC THIÊN</p>
+ </ul>
+</div>
+    <script src="function.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+  apiKey: "AIzaSyA1F6aP8O9yjiPuO4SZfS-n2sqSJ5Xw4Zc",
+  authDomain: "dht11-9dc5c.firebaseapp.com",
+  databaseURL: "https://dht11-9dc5c-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "dht11-9dc5c",
+  storageBucket: "dht11-9dc5c.firebasestorage.app",
+  messagingSenderId: "640584629851",
+  appId: "1:640584629851:web:92cc624a2a5282e223c97e",
+  measurementId: "G-33LY385W6R"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+<script>
+  //functions
+  var nhietDo = document.getElementById('nhietdo');
+  var dbRef = firebase.database().ref('pkhach').child('Nhiet do');
+  var doAm = document.getElementById('doam');
+  var dbRef2 = firebase.database().ref('pkhach').child('Doam');
+  var khigas = document.getElementById('khigas');
+  var dbRef3 = firebase.database().ref('pkhach').child('Gas');  
+
+  var nhietDo_q2 = document.getElementById('nhietdo');
+  var dbRef4 = firebase.database().ref('pngu1').child('Nhiet do');
+  var doAm_q2 = document.getElementById('doam');
+  var dbRef5 = firebase.database().ref('pngu1').child('Doam'); 
+  var khigas_q2 = document.getElementById('khigas');
+  var dbRef6 = firebase.database().ref('pngu1').child('Gas');   
+
+  var nhietDo_q3 = document.getElementById('nhietdo');
+  var dbRef7 = firebase.database().ref('pngu2').child('Nhiet do');
+  var doAm_q3 = document.getElementById('doam');
+  var dbRef8 = firebase.database().ref('pngu2').child('Doam'); 
+  var khigas_q3 = document.getElementById('khigas');
+  var dbRef9 = firebase.database().ref('pngu2').child('Gas');  
+
+  var nhietDo_q4 = document.getElementById('nhietdo');
+  var dbRef10 = firebase.database().ref('bep').child('Nhiet do');
+  var doAm_q4 = document.getElementById('doam');
+  var dbRef11 = firebase.database().ref('bep').child('Doam');
+  var khigas_q4 = document.getElementById('khigas');
+  var dbRef12 = firebase.database().ref('bep').child('Gas');  
+</script>
+<script>
+    const ctx = document.getElementById("chartNhietDo").getContext("2d");
+    const chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ["P1", "P2", "P3", "P4"],
+        datasets: [{
+          label: "Nhiệt độ (°C)",
+          backgroundColor: ["#f70303", "#2196F3", "#4CAF50", "#FF9800"],
+          data: [0, 0, 0, 0]
+        }]
+      },
+      options: {
+    responsive: false,
+    scales: {
+      y: {
+        beginAtZero: false
+      }
+    },
+    plugins: {
+      legend: {
+        labels: {
+          color: "black", 
+          font: {
+            size: 14,
+            weight: 'bold'
+          }
+        }
+      }
+    }
+  }
+});
+
+    // Hàm cập nhật giá trị cho 1 quận
+    function capNhatNhietDo(index, path) {
+      firebase.database().ref(path).on("value", function(snapshot) {
+        chart.data.datasets[0].data[index] = snapshot.val();
+        chart.update();
+      });
+    }
+
+    // Gọi hàm cho từng quận
+    capNhatNhietDo(0, "pkhach/Nhiet do");
+    capNhatNhietDo(1, "pngu1/Nhiet do");
+    capNhatNhietDo(2, "pngu2/Nhiet do");
+    capNhatNhietDo(3, "bep/Nhiet do");
+  </script>
+<script>
+  const ctx2 = document.getElementById("chartDoam").getContext("2d");
+  const chart2 = new Chart(ctx2, {
+    type: "bar",
+    data: {
+      labels: ["P1", "P2", "P3", "P4"],
+      datasets: [{
+        label: "Độ ẩm (%)",
+        backgroundColor: ["#f70303", "#2196F3", "#4CAF50", "#FF9800"],
+        data: [0, 0, 0, 0]
+      }]
+    },
+    options: {
+  responsive: false,
+  scales: {
+    y: {
+      beginAtZero: false
+    }
+  },
+  plugins: {
+    legend: {
+      labels: {
+        color: "black", 
+        font: {
+          size: 14,
+          weight: 'bold'
+        }
+      }
+    }
+  }
+}
+});
+function capNhatDoAm(index, path) {
+    firebase.database().ref(path).on("value", function(snapshot) {
+      chart2.data.datasets[0].data[index] = snapshot.val();
+      chart2.update();
+    });
+  }
+
+  // Gọi hàm cho từng quận
+  capNhatDoAm(0, "pkhach/Doam");
+  capNhatDoAm(1, "pngu1/Doam");
+  capNhatDoAm(2, "pngu2/Doam");
+  capNhatDoAm(3, "bep/Doam");
+</script>
+  
+<script>
+  const ctx3 = document.getElementById("chartGas").getContext("2d");
+  const chart3 = new Chart(ctx3, {
+    type: "bar",
+    data: {
+      labels: ["P1", "P2", "P3", "P4"],
+      datasets: [{
+        label: "Nồng độ khí Gas (ppm)",
+        backgroundColor: ["#f70303", "#2196F3", "#4CAF50", "#FF9800"],
+        data: [0, 0, 0, 0]
+      }]
+    },
+    options: {
+  responsive: false,
+  scales: {
+    y: {
+      beginAtZero: false
+    }
+  },
+  plugins: {
+    legend: {
+      labels: {
+        color: "black", 
+        font: {
+          size: 14,
+          weight: 'bold'
+        }
+      }
+    }
+  }
+}
+});
+
+  // Hàm cập nhật giá trị cho 1 quận
+  function capNhatKhiGas(index, path) {
+    firebase.database().ref(path).on("value", function(snapshot) {
+      chart3.data.datasets[0].data[index] = snapshot.val();
+      chart3.update();
+    });
+  }
+
+  // Gọi hàm cho từng quận
+  capNhatKhiGas(0, "pkhach/Gas");
+  capNhatKhiGas(1, "pngu1/Gas");
+  capNhatKhiGas(2, "pngu2/Gas");
+  capNhatKhiGas(3, "bep/Gas");
+</script>
+<script>
+  function function_q1(){
+    dbRef.on('value', snap => nhietDo.innerText = snap.val()+ '°C');
+    dbRef2.on('value', snap => doAm.innerText = snap.val()+ '%');
+    dbRef3.on('value', snap => khigas.innerText = snap.val()+ 'ppm');
+  }
+</script>
+<script>
+  function function_q2(){
+    dbRef4.on('value', snap => nhietDo_q2.innerText = snap.val()+'°C');
+    dbRef5.on('value', snap => doAm_q2.innerText = snap.val()+ '%');
+    dbRef6.on('value', snap => khigas_q2.innerText = snap.val()+ 'ppm');
+  }
+</script>
+<script>
+  function function_q3(){
+    dbRef7.on('value', snap => nhietDo_q3.innerText = snap.val()+ '°C');
+    dbRef8.on('value', snap => doAm_q3.innerText = snap.val()+ '%');
+    dbRef9.on('value', snap => khigas_q3.innerText = snap.val()+ 'ppm');
+  }
+</script>
+<script>
+  function function_q4(){
+    dbRef10.on('value', snap => nhietDo_q4.innerText = snap.val() + '°C');
+    dbRef11.on('value', snap => doAm_q4.innerText = snap.val()+ '%');
+    dbRef12.on('value', snap => khigas_q4.innerText = snap.val()+ 'ppm');
+  }
+</script>
+</body>
+</html>
